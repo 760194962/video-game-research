@@ -15,8 +15,6 @@ SIZE = 0x34400
 HIST = 0xE000                 # _24_battle_history._00_data      u32[256]   (enum HISTORY)
 SCORE = 0xE408                # _24_battle_history._10_score_record u32[8192]
 ROOM = SCORE + 3328 * 4       # HISTORY_SCORE_OFFSET_ROOM = 3328  -> 0x11808
-WALLPAPER_SECRET = 0x46C      # _02_setting_screen._11_wallpaper_secret_opened (no visible effect in this title)
-SECRET_3D = 0x47C             # _02_setting_screen._3d_secret_opened (3D menu not shown on Switch)
 
 H_BOSS_DEFEAT_SB_S = 93       # secret boss (Alice) defeated; S/P/C = 93/94/95
 H_CREDIT = 149                # credit-limit step, 8 = unlimited credits (no FREE PLAY option in this title)
@@ -65,8 +63,6 @@ def main(mode, src, dst):
 
     if mode == 'all':
         atleast(HIST + H_CREDIT * 4, 8)
-        atleast(WALLPAPER_SECRET, 1)
-        atleast(SECRET_3D, 1)
         for off, n in ITEM_CATS:
             for i in range(n):
                 atleast(room(R_ITEM + off + i), 1)
