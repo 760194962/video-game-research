@@ -1,0 +1,10 @@
+hd_keys.json
+save_notes.json
+backups/
+resigned/
+__pycache__/
+*.xbe
+*.rar
+5443000d/
+.pytest_cache/
+ngb_lang.json
