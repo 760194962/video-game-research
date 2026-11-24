@@ -12,11 +12,12 @@
 | [`fatalframe1-save-converter/`](fatalframe1-save-converter/) | 零 ~zero~（Xbox）日版 ⇄ 美版存档互转 |
 | [`doa2u-save-transfer/`](doa2u-save-transfer/) | Dead or Alive Ultimate（Xbox）档案在主机间迁移 |
 | [`ps2-memcard-manager/`](ps2-memcard-manager/) | PCSX2 文件夹卡 / 记忆卡镜像管理器 |
+| [`hakomasu-research/`](hakomasu-research/) | THE IDOLM@STER（Xbox 360）存档格式、成就、反编译笔记与工具 |
 | [`ps3-userid-counter-reset/`](ps3-userid-counter-reset/) | PS3 `lastCreatedUserId` 计数器研究与重置工具 |
 
-后 7 个目录由原独立仓库合并而来，保留了提交历史；原独立仓库暂时保留，之后以本仓库为准。
+后 8 个目录由原独立仓库合并而来，保留了提交历史；原独立仓库暂时保留，之后以本仓库为准。
 
 ## 内容说明
 
 - 本仓库不包含任何游戏本体文件（含 XBE / ISO）、解包出的游戏数据或密钥；需要自行从自己的主机导出。
-- 例外：`doa2u-save-transfer/saves/` 是作者自己制作的存档，已用全零 MAC / HDKey 签名，不绑定任何主机；`doa2u-save-transfer/bin/` 与 `fatalframe1-save-converter/` 的历史里有编译好的 Windows 工具 `.exe`。
+- 例外：`doa2u-save-transfer/saves/` 是作者自己制作的存档，已用全零 MAC / HDKey 签名，不绑定任何主机；`doa2u-save-transfer/bin/` 与 `fatalframe1-save-converter/` 的历史里有编译好的 Windows 工具 `.exe`；`hakomasu-research/saves/` 是修改过的 Xbox 360 存档数据（不含游戏本体，XEX 密钥需自备）。
