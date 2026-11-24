@@ -60,8 +60,8 @@ RomFS 中脚本和配置是 M2 的 `mdf` 格式：
 | 偏移 | 字段 | 说明 |
 |---|---|---|
 | 0x0000 | `_00_header._00_version` | 0x00010015 |
-| 0x046C | `_02_setting_screen._11_wallpaper_secret_opened` | 隐藏壁纸（原本靠菜单秘技打开） |
-| 0x047C | `_02_setting_screen._3d_secret_opened` | 3D 隐藏模式（全新存档默认即为 1） |
+| 0x046C | `_02_setting_screen._11_wallpaper_secret_opened` | 隐藏壁纸开关（M2 通用字段；本作无实际效果，见第 4 节） |
+| 0x047C | `_02_setting_screen._3d_secret_opened` | 3D 模式开关（M2 通用字段，全新存档默认为 1；Switch 上菜单不显示） |
 | 0x15C0 | `_21_setting_game_setting._00_secret_character` | 有字段但**脚本里没有任何地方使用** |
 | 0xE000 | `_24_battle_history._00_data` u32[256] | `enum HISTORY`（见下） |
 | 0xE408 | `_24_battle_history._10_score_record` u32[8192] | "HISTORY SCORE"，下分多个区 |
@@ -100,7 +100,7 @@ RomFS 中脚本和配置是 M2 的 `mdf` 格式：
 | 任务全部完美通关 | 逐个通关 | 任务记录 +0/+2/+5 | 按脚本推导 |
 | 投币无限 | Arcade 打完 8 局 | HISTORY[149] = 8 | 按脚本推导 |
 | FREE PLAY 选项 | — | **本作不存在**：「FREE PLAY設定」在各设置菜单的配置里有定义，但没有放进任何一个菜单的显示列表（`layout`），游戏里不会出现 | 配置确认；实机也未见 |
-| 隐藏壁纸 / 3D 模式 | 菜单秘技 | 0x46C / 0x47C | 按脚本推导 |
+| 隐藏壁纸 / 3D 模式 | — | **本作实际不存在**：画面设定菜单的显示列表（`system/config/setting_screen.psb` 的 `layout`）只有旋转/预设/自动尺寸/尺寸/平滑/扫描线；3D 三项在不支持 3D 的平台上被脚本移除；`title_prof.psb` 中壁纸总数 `max_num` 为 1，开关打开也不会多出壁纸。存档里 0x46C / 0x47C 仍有对应字段，改了也无效果 | 配置确认；实机也未见 |
 | ACチャレンジ全场景 | — | 无需修改：`challengeGuiGetIsUnlocked()` 在此版本中固定返回 1 | 脚本确认 |
 | おさらい（絆育成）角色 | — | 无需修改：相关解锁显示已被注释掉，未启用 | 脚本确认 |
 | 勋章 / 奖杯 | — | Switch 版不存在：`trophy_TrophyUnlock()` 只在 PS4 上发放，medal 区在 Switch 上恒为 0 | 脚本确认 |
