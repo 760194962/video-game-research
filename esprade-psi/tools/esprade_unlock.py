@@ -19,7 +19,7 @@ WALLPAPER_SECRET = 0x46C      # _02_setting_screen._11_wallpaper_secret_opened
 SECRET_3D = 0x47C             # _02_setting_screen._3d_secret_opened
 
 H_BOSS_DEFEAT_SB_S = 93       # secret boss (Alice) defeated; S/P/C = 93/94/95
-H_CREDIT = 149                # credit-limit step, 8 = unlimited + FREE PLAY
+H_CREDIT = 149                # credit-limit step, 8 = unlimited credits (no FREE PLAY option in this title)
 
 # Irori's Room (index into ROOM, u32 each)
 R_CHARA, R_EXP, R_ALICE_OPENED = 0, 1, 14
