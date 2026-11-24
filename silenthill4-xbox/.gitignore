@@ -1,0 +1,7 @@
+# keep game data and saves out of the repository
+*.dat
+*.xbe
+*.iso
+*.bin
+*.xbx
+__pycache__/
