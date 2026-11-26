@@ -21,6 +21,8 @@ H_CREDIT = 149                # credit-limit step, 8 = unlimited credits (no FRE
 
 # Irori's Room (index into ROOM, u32 each)
 R_CHARA, R_EXP, R_ALICE_OPENED = 0, 1, 14
+R_JUDGE_MONEY, R_NEXT_TICKET_MONEY = 9, 15
+FUKUBIKI_UNIT_PRICE = 1000
 R_LAYOUT, R_LAYOUT_SIZE = 40, 80
 L_EMOTE, L_PET_TYPE_1, L_PET_EXP_1 = 0, 57, 61
 R_ITEM = 360
@@ -82,6 +84,12 @@ def main(mode, src, dst):
                 atleast(room(base + 0), 1)               # played
                 atleast(room(base + 2), 1)               # cleared
                 w(room(base + 5), 16)                    # star: 16 = perfect
+        # JUDGE MONEY only ever increases, by the same amount as the clearing character's EXP,
+        # so a consistent save has money >= sum of character EXP. One ticket per 1000 earned:
+        # next-ticket threshold = 100 + tickets_given * 1000.
+        money = max(r(room(R_JUDGE_MONEY)), sum(r(room(R_EXP + ch)) for ch in range(4)))
+        w(room(R_JUDGE_MONEY), money)
+        w(room(R_NEXT_TICKET_MONEY), 100 + ((money - 100) // FUKUBIKI_UNIT_PRICE + 1) * FUKUBIKI_UNIT_PRICE)
 
     open(dst, 'wb').write(d)
 
