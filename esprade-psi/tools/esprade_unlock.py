@@ -31,6 +31,7 @@ R_PET = 760
 PET_COUNTS = [5, 6, 5, 5]                         # dog, cat, bird, hamster
 R_MISSION = 800                                   # + chara*800 + (mission-1)*8
 MISSIONS = [*range(1, 11), *range(11, 42), *range(71, 76), *range(81, 89), *range(91, 97)]  # 60
+STORY_MISSIONS = range(11, 42)                    # support selectable (SPT_SELECT): star = bit per support, 15 = all four
 R_ACC = 4000                                      # + type*20 + chara*5 + part
 ACC_COUNTS = [[5, 7, 9, 2, 4], [3, 6, 7, 2, 4], [4, 18, 5, 1, 3], [6, 12, 4, 2, 6]]  # [chara][part]
 EXP_MAX = 4860000                                 # Lv99 for characters and pets
@@ -83,7 +84,9 @@ def main(mode, src, dst):
                 base = R_MISSION + ch * 800 + (m - 1) * 8
                 atleast(room(base + 0), 1)               # played
                 atleast(room(base + 2), 1)               # cleared
-                w(room(base + 5), 16)                    # star: 16 = perfect
+                # star: selectable-support (story) missions keep one bit per support type (1/2/4/8, 15 = all);
+                # fixed-support missions use 16. Writing 16 to a story mission gets reset on the next clear.
+                w(room(base + 5), 15 if m in STORY_MISSIONS else 16)
         # JUDGE MONEY only ever increases, by the same amount as the clearing character's EXP,
         # so a consistent save has money >= sum of character EXP. One ticket per 1000 earned:
         # next-ticket threshold = 100 + tickets_given * 1000.
